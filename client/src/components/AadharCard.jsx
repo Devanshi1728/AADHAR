@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../App.css";
 
 const AadharCard = ({ data }) => {
   const [userData, setData] = useState(data);
@@ -7,7 +8,7 @@ const AadharCard = ({ data }) => {
   }, []);
 
   return (
-    <>
+    <div className="mainWrapper">
       <h2>Aadhar Card</h2>
       <div className="aadharCard">
         <div className="header">
@@ -63,7 +64,7 @@ const AadharCard = ({ data }) => {
           </h4>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

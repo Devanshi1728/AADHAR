@@ -32,6 +32,9 @@ const AadharCardSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  role: {
+    type: String,
+  },
 });
 
 const AadharCard = mongoose.model("AadharCard", AadharCardSchema);

@@ -1,7 +1,14 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* max-width: 1280px; */
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.mainWrapper {
+  text-align: center;
+}
+
+.loginWrapper {
   text-align: center;
 }
 
@@ -9,6 +16,7 @@
   width: 400px;
   height: 190px;
   padding: 30px;
+  margin: auto;
   background-color: aliceblue;
 }
 .form-fields {
@@ -17,6 +25,9 @@
 .aadharCard {
   padding: 10px;
   background-color: aliceblue;
+  margin: auto;
+  height: auto;
+  width: 500px;
 }
 
 .myAadhar {

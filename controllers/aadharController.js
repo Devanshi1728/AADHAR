@@ -32,9 +32,12 @@ exports.addUserData = async (req, res, next) => {
 
 exports.getUserData = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
     const user = await userModel.findOne({ email, password });
     if (user) {
+      if (user.role === "admin") {
+        res.status(200).send({ admin: true });
+      }
       res.status(200).send({ data: user, success: true });
     } else {
       res.status(401).json({ error: "Invalid login credentials" });

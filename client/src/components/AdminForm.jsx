@@ -54,6 +54,8 @@ const AdminForm = () => {
         justifyContent: "center",
         margin: "0 auto",
         padding: "30px",
+        marginTop: "50px",
+        textAlign: "center",
         backgroundColor: "aliceblue",
       }}
     >

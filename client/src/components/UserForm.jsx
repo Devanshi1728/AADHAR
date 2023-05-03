@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import AadharCard from "./AadharCard";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const UserForm = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const initialData = {
     email: "",
     password: "",
+    role: location.state || "client",
   };
   const [data, setData] = useState(initialData);
   const [userData, setUserData] = useState();
@@ -25,11 +29,13 @@ const UserForm = () => {
   }, []);
 
   const handleSubmit = async () => {
-    console.log("data in use form-", data);
     if (data) {
       await axios
         .post("http://localhost:8000/api/login", data)
         .then((res) => {
+          if (res.data.admin) {
+            navigate("/admin");
+          }
           if (res.data.success) {
             setUserData(res.data.data);
             localStorage.setItem("user", JSON.stringify(res.data.data));
@@ -44,8 +50,8 @@ const UserForm = () => {
   };
 
   return (
-    <>
-      <h3>Login here to view your AADHAR Card</h3>
+    <div className="loginWrapper">
+      <h2>Login here to view your AADHAR Card</h2>
       <div className="form">
         <div className="form-fields">
           <TextField
@@ -55,6 +61,7 @@ const UserForm = () => {
             onChange={handleChange}
             name="email"
             margin="dense"
+            fullWidth
           />
           <TextField
             required
@@ -64,6 +71,7 @@ const UserForm = () => {
             onChange={handleChange}
             name="password"
             margin="dense"
+            fullWidth
           />
         </div>
         <Button
@@ -75,7 +83,7 @@ const UserForm = () => {
         </Button>
       </div>
       {userData && <AadharCard data={userData} />}
-    </>
+    </div>
   );
 };
 
